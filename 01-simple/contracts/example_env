@@ -1,0 +1,5 @@
+SCROLL_RPC=https://sepolia.scrollscan.com
+NETWORK_EXPLORER_API_KEY=api key to verify contract in explorer
+PRIVATE_KEY=0x....
+
+

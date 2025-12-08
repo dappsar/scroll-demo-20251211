@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",              
+    "moduleResolution": "Node",
+
+    "lib": ["ES2021"],                  
+    "types": ["node"],                  
+
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    "outDir": "dist",
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"]
+}

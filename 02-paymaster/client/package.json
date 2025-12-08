@@ -1,0 +1,21 @@
+{
+  "name": "aa-demo-client",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "biome": "biome check src",
+    "biome:fix": "biome check src --write"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "viem": "^2.7.17"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
+    "@types/node": "^20.19.25",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2"
+  },
+  "packageManager": "yarn@1.22.22"
+}

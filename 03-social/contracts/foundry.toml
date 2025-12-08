@@ -1,0 +1,8 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+[etherscan]
+# Chain ID 534351 = Scroll Sepolia
+534351 = { key = "${NETWORK_EXPLORER_API_KEY}", url = "https://api-sepolia.scrollscan.com/api"}
