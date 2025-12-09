@@ -238,6 +238,17 @@ async function smartAccountExists(addr: Address): Promise<boolean> {
 }
 
 /**
+ * Shows the first 5 characters and replaces the rest with '*'.
+ * Example: "1234567890" => "12345*****"
+ */
+export function maskAfterFive(input: string): string {
+  if (input.length <= 5) return input
+  const firstFive = input.slice(0, 5)
+  const masked = "*".repeat(input.length - 5)
+  return firstFive + masked
+}
+
+/**
  * Computes deterministic AA address using AccountFactory.getAddress(),
  * and logs whether it's already deployed.
  */
@@ -245,7 +256,7 @@ async function ensureSmartAccount(): Promise<Address> {
   if (!ownerPk) throw new Error("Missing owner PK")
   if (!uuidString) throw new Error("Missing uuidString")
 
-  log(`uuidString: ${uuidString}`)
+  log(`uuidString: ${maskAfterFive(uuidString)}`)
   log(`backendSalt (hex): ${backendSalt}`)
 
   const computed = (await publicClient.readContract({
