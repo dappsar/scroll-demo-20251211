@@ -8,7 +8,6 @@ import type { Address, BundlerSendUoResponse, Hex, UserOperationReceipt } from "
 import {
   buildUserOperation,
   CYAN,
-  createOwnerWallet,
   createRpcClient,
   encodeExecute,
   encodeIncrementCall,
@@ -18,6 +17,7 @@ import {
   envValue,
   GREEN,
   getBundlerGasPrices,
+  getOwnerWallet,
   MAGENTA,
   RESET,
   readDemoCount,
@@ -56,7 +56,7 @@ const SC_DEMO_LOGIC_ADDRESS: Address = envAddress(
 // In the workshop: this is the one who signs the UserOperation, NOT transactions.
 // This is Step 1 in AA: removing dependency on native tx signatures.
 const OWNER_PK: Hex = envHex(process.env.PRIVATE_KEY, "PRIVATE_KEY")
-const { account: owner, wallet } = createOwnerWallet(RPC_URL, OWNER_PK)
+const { account: owner, wallet } = getOwnerWallet(RPC_URL, OWNER_PK)
 
 // ============================================================================
 // RPC & WALLET CLIENTS

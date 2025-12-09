@@ -9,7 +9,6 @@ import {
   buildPaymasterAndData,
   buildUserOperation,
   CYAN,
-  createOwnerWallet,
   createRpcClient,
   encodeExecute,
   encodeIncrementCall,
@@ -18,6 +17,7 @@ import {
   envValue,
   GREEN,
   getBundlerGasPrices,
+  getOwnerWallet,
   MAGENTA,
   RESET,
   readDemoCount,
@@ -65,7 +65,7 @@ const PAYMASTER_PK: Hex = envHex(
   "PAYMASTER_PRIVATE_KEY"
 )
 
-const { account: owner } = createOwnerWallet(RPC_URL, OWNER_PK)
+const { account: owner } = getOwnerWallet(RPC_URL, OWNER_PK)
 
 // ============================================================================
 // RPC & WALLET CLIENTS

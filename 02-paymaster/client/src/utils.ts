@@ -61,8 +61,11 @@ export function createRpcClient(rpcUrl: string) {
   })
 }
 
-export function createOwnerWallet(rpcUrl: string, ownerPk: Hex) {
+export function getOwnerWallet(rpcUrl: string, ownerPk: Hex) {
   const account = privateKeyToAccount(ownerPk)
+
+  // Note: `createWalletClient` does NOT create any on-chain wallet or deploy anything.
+  // It only builds a local signer/client wrapper around the provided private key.
   return {
     account,
     wallet: createWalletClient({
@@ -75,8 +78,8 @@ export function createOwnerWallet(rpcUrl: string, ownerPk: Hex) {
 
 // Types for rpc and wallet arguments
 export type RpcClient = ReturnType<typeof createRpcClient>
-export type WalletClient = ReturnType<typeof createOwnerWallet>["wallet"]
-export type OwnerAccount = ReturnType<typeof createOwnerWallet>["account"]
+export type WalletClient = ReturnType<typeof getOwnerWallet>["wallet"]
+export type OwnerAccount = ReturnType<typeof getOwnerWallet>["account"]
 
 // ---------------------- ENCODING HELPERS ----------------------
 export function toHex(v: bigint | number): Hex {
