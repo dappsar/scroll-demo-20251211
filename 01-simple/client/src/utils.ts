@@ -10,7 +10,7 @@ import {
 } from "viem"
 import { privateKeyToAccount } from "viem/accounts"
 import { scrollSepolia } from "viem/chains"
-
+import { EXECUTE_ABI, INCREMENT_ABI } from "./abi"
 import type { Address, GasPrices, Hex, ReceiptResponse, UserOperationReceipt } from "./types"
 
 // Colors
@@ -88,34 +88,14 @@ export function toHex(v: bigint | number): Hex {
 
 export function encodeIncrementCall(): Hex {
   return encodeFunctionData({
-    abi: [
-      {
-        name: "increment",
-        type: "function",
-        inputs: [],
-        outputs: [],
-        stateMutability: "nonpayable"
-      }
-    ] as const,
+    abi: INCREMENT_ABI,
     functionName: "increment"
   })
 }
 
 export function encodeExecute(target: Address, value: bigint, data: Hex): Hex {
   return encodeFunctionData({
-    abi: [
-      {
-        name: "execute",
-        type: "function",
-        inputs: [
-          { name: "target", type: "address" },
-          { name: "value", type: "uint256" },
-          { name: "data", type: "bytes" }
-        ],
-        outputs: [],
-        stateMutability: "nonpayable"
-      }
-    ] as const,
+    abi: EXECUTE_ABI,
     functionName: "execute",
     args: [target, value, data]
   })

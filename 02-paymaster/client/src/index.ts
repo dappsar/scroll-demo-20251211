@@ -153,6 +153,9 @@ SmartAccount.execute(
 ${YELLOW}[HASH COMPUTATION]${RESET}
 Computing userOpHash exactly as Smart Account does in validateUserOp()...
 `)
+
+  // Build a compact byte array (encodePacked) with address + nonce + callData hash,
+  // then hash it with keccak256 to produce the message the smart account will verify.
   const rawHash: Hex = keccak256(
     encodePacked(
       ["address", "uint256", "bytes32"],
