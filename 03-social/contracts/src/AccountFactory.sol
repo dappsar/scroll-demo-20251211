@@ -166,38 +166,4 @@ contract AccountFactory {
 
         return payable(address(uint160(uint256(hash))));
     }
-
-    /**
-     * @notice Recovery hook: change the owner of a deployed smart account.
-     *
-     * @dev
-     * - Only the factory `admin` can call this function.
-     * - It computes the account address via `getAddress`, checks that code exists,
-     *   and then calls `setOwner(newOwner)` on the DemoAccount.
-     *
-     * - This is intended for **demo / workshop** purposes to showcase
-     *   recovery / owner rotation via a trusted entity.
-     *
-     * @param uuidString      Same identifier used when creating the account.
-     * @param backendSalt     Same backend salt used when creating the account.
-     * @param entryPoint      EntryPoint used to derive the account address.
-     * @param newOwner        New EOA that will control the smart account.
-     *
-     * @notice TRADE-OFF:
-     * - Centralized recovery: admin can seize or rotate ownership.
-     * - In real-world deployments, this should be:
-     *     - Controlled by a multisig, DAO, or recovery policy.
-     *     - Clearly communicated to users (who can recover / under what rules).
-     */
-    function setSmartAccountOwner(string memory uuidString, bytes32 backendSalt, address entryPoint, address newOwner)
-        external
-        onlyAdmin
-    {
-        address payable account = getAddress(uuidString, backendSalt, entryPoint);
-        require(account.code.length > 0, "Account not deployed");
-
-        DemoAccount(account).setOwner(newOwner);
-
-        emit SmartAccountOwnerChanged(account, newOwner);
-    }
 }
